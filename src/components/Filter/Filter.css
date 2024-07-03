@@ -1,0 +1,29 @@
+.slider{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    gap:30px;
+    text-align: center;
+    margin: 20px 0;
+    overflow-x: scroll;
+}
+.slider::-webkit-scrollbar{
+    display: none;
+}
+.slider img{
+    width: 7.5vw;
+    min-width: 80px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+.filter hr{
+    margin: 10px 0;
+    height: 2px;
+    background-color: #e2e2e2;
+    border: none;
+}
+.slider .active{
+    border: 4px solid tomato;
+    padding: 2px;
+}
