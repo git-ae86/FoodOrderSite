@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword,sendEmailVerification } from "firebase/auth"
-import {useNavigate} from "react-router-dom"
-import { auth } from "../firebase";
+import {Link, useNavigate} from "react-router-dom"
+import { auth } from "../../Firebase.js";
+import "./Sign.css"
 
 export default function Sign() {
 
-    const [name, setname] = useState("");
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
 
@@ -24,35 +24,31 @@ export default function Sign() {
             await sendEmailVerification(userCredential.user);
 
             alert("Email Verification link has been sent on your provided email");
-            navigate("/login");
+            navigate("/Login");
         } catch (err) {
             alert(err.message);
         }
 
     }
 
-    return (
-        <>
-            <h1 style={{textAlign:"center"}}>Registration</h1>
-            <form action="" style={{marginTop:"10vh",textAlign:"center"}}>
+    return (<>
+    <form>
+        <h3>SignUp Here</h3>
 
-                <label htmlFor="name">Name: </label>
-                <input id="name" type="text" value={name} onChange={(e) => setname(e.target.value)} />
-                <br />
-                <br />
-                <label htmlFor="email">Email: </label>
-                <input id="email" type="email" value={email} onChange={(e) => setemail(e.target.value)} />
-                <br />
-                <br />
-                <label htmlFor="">Password: </label>
-                <input id="password" type="password" value={password} onChange={(e) => setpassword(e.target.value)} />
-                <br />
-                <br />
-                <input style={{marginRight:"4vw"}} onClick={(e) => { handleSubmit(e); }} type="submit" />
-                <button onClick={(e) => {e.preventDefault();  navigate("/login");}}  >signUp</button>
+        <label htmlFor="username">Email</label>
+        <input type={email} placeholder="Email" onChange={(e)=>{setemail(e.target.value)}} className="p-2"  id="username"/>
 
+        <label htmlFor="password">Password</label>
+        <input type="password" onChange={(e)=>{setpassword(e.target.value)}} className="p-2 mb-8" placeholder="Password" id="password"/>
 
-            </form>
+        
+        <div className="text-center flex justify-between">
+          <button to="/" onClick={(e)=>{handleSubmit(e)}}>Sign Up</button>
+          <Link to="/Login" >Login</Link>
+        </div>
+       
+        
+    </form>
         </>
     )
 }

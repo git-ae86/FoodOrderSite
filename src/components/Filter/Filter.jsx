@@ -3,6 +3,7 @@ import { menu_list, assets } from "../../assets/assets";
 import { food_list } from "../../assets/assets";
 import "./Filter.css";
 import { context } from "../../App";
+import { Link } from "react-router-dom";
 export default function Filter() {
   const [category, setCategory] = useState("All");
   const {cart,setCart, quantity, setQ, addQuantity, removeQuantity } = useContext(context);
@@ -32,16 +33,17 @@ export default function Filter() {
         })}
       </div>
       <hr />
-      <div className="foods flex justify-between gap-2 flex-wrap mt-[5vh]">
+      <div className="foods flex max-[680px]:justify-center justify-between gap-1 min-[680px]:gap-2 flex-wrap mt-[5vh]">
         {food_list.map((ele, idx) => {
           if (category == "All" || category == ele.category) {
             return (
-              <div key={idx} className="mb-[2vh]">
+              <div key={idx} className="mb-[2vh] w-[80%] min-[680px]:w-[40%] min-[816px]:max-[1368px]:w-[30%]">
                 <div className="relative">
                   <img
                     style={{ borderRadius: "15px 15px 0 0" }}
                     src={ele.image}
                     alt=""
+                    className="max-[680px]:w-[100%]"
                   />
                   {quantity[ele._id] < 1 || !quantity[ele._id] ? (
                     <img
@@ -78,12 +80,12 @@ export default function Filter() {
 
                 <p>${ele.price}</p>
                 <div className="flex justify-between w-[100%]">
-                  <button onClick={()=>{setCart((prev)=>([...prev,{[ele._id]:quantity[ele._id]}]));}} className="bg-[#ff7c18] hover:bg-[#fe5000] p-1 px-2 rounded-md">
+                  <button onClick={()=>{setCart((prev)=>([...prev,{quantity:quantity[ele._id],name:ele.name,price:ele.price,image:ele.image}]));}} className="bg-[#ff7c18] hover:bg-[#fe5000] p-1 px-2 rounded-md">
                     Add To Cart
                   </button>
-                  <button className="bg-[#ff7c18] hover:bg-[#fe5000] p-[1] px-2 rounded-md">
+                  <Link to="./Cart" className="bg-[#ff7c18] hover:bg-[#fe5000] p-[1] px-2 rounded-md">
                     Go To Cart
-                  </button>
+                  </Link>
                 </div>
               </div>
             );

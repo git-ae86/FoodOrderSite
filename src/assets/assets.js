@@ -44,6 +44,21 @@ import food_30 from './food_30.png'
 import food_31 from './food_31.png'
 import food_32 from './food_32.png'
 
+import r1 from "./r1.avif"
+import r2 from "./r2.avif"
+import r3 from "./r3.avif"
+import r4 from "./r4.avif"
+import r5 from "./r5.avif"
+import r6 from "./r6.avif"
+import r7 from "./r7.avif"
+import r8 from "./r8.avif"
+import r9 from "./r9.avif"
+import r10 from "./r10.avif"
+import r11 from "./r11.avif"
+import r12 from "./r12.avif"
+import r13 from "./r13.avif"
+import r14 from "./r14.avif"
+
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
 import remove_icon_red from './remove_icon_red.png'
@@ -347,4 +362,77 @@ export const food_list = [
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Noodles"
     }
+]
+export const revs=[
+    {
+        name: "Alice",
+        image:r1,
+        des:"The delivery was super fast and the food was delicious! I ordered a pizza and it was still hot when it arrived. The toppings were fresh and the crust was perfectly crispy."
+    },
+    {
+        name: "Bob",
+        image:r2,
+        des:"The food was okay, but the delivery took longer than expected. I ordered a burger and fries, and while the burger was decent, the fries were a bit soggy."
+    },
+    {
+        name: "Charlie",
+        image:r3,
+        des:"Amazing service! The food arrived hot and fresh. Will definitely order again. I tried their pasta dish, and it was divine. The sauce was rich and creamy, and the pasta was cooked to perfection."
+    },
+    {
+        name:"Diana" ,
+        image:r4,
+        des:"The food quality was not up to the mark. Disappointed with the taste. I ordered sushi, and it tasted a bit off. The rice was too dry, and the fish didn't seem very fresh."
+    },
+    {
+        name: "Eva",
+        image:r5,
+        des:"Great variety of options on the menu. Prompt delivery too! I tried their salads, and they were so refreshing. The ingredients were crisp and the dressings were flavorful."
+    },
+    {
+        name: "Frank",
+        image:r6,
+        des:"I was pleasantly surprised by the quality of the food and service. I ordered a steak and it was cooked to perfection, just the way I like it. The delivery was also very prompt."
+    },
+    {
+        name:"Gina" ,
+        image:r7,
+        des:"Overall, a decent experience. The food arrived on time and was warm. However, the portion sizes were smaller than expected. I ordered a sandwich and it was tasty, but I wish there was more filling."
+    },
+    {
+        name:"Henry" ,
+        image:r8,
+        des:"I'm impressed by the customer service. There was an issue with my order, but it was quickly resolved by the support team. The food itself was fantastic. I ordered their seafood platter and it was fresh and flavorful."
+    },
+    {
+        name: "Ivy",
+        image:r9,
+        des:"The food was average. I ordered a pizza and it was a bit greasy. The delivery was on time though. Not sure if I'll order again."
+    },
+    {
+        name: "Jack",
+        image:r10,
+        des:"Absolutely loved it! The food was exceptional, especially the desserts. I ordered their chocolate cake and it was heavenly. The delivery was also very smooth."
+    },
+    {
+        name:"Apurva" ,
+        image:r11,
+        des:"Excellent service! The food arrived hot and on time. Definitely ordering again."
+    },
+    {
+        name:"Smith" ,
+        image:r12,
+        des:"Great variety of restaurants to choose from. The app is user-friendly and makes ordering food a breeze."
+    },
+    {
+        name:"Alia" ,
+        image:r13,
+        des:"Decent service. However, the delivery was a bit late this time."
+    },
+    {
+        name:"Emily" ,
+        image:r14,
+        des:"Impressed with the customer support. They promptly resolved an issue I had with my order. Will continue using this app."
+    }
+    
 ]
