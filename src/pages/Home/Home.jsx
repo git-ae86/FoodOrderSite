@@ -7,25 +7,25 @@ import { auth } from "../../Firebase";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 
-export default function Home(){
+export default function Home() {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user == null || !user.emailVerified) {
         navigate("/Login");
-      } 
+      }
     });
 
     return () => unsubscribe(); // Cleanup the listener on unmount
   }, []);
-    
-    return (
-        <>
-          <Navbar/>  
-          <Hero/>
-          <Filter/>
-          <Footer/>
-        </>
-    )
+
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <Filter />
+      <Footer />
+    </>
+  );
 }

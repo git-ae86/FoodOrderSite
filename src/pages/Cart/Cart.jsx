@@ -8,7 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../../components/Footer/Footer";
 
-
 let genAI;
 export default function Cart() {
   const { cart, setCart } = useContext(context);
@@ -17,14 +16,12 @@ export default function Cart() {
   const [flag2, setflag2] = useState(true);
   const [text, setText] = useState("Please Wait");
 
-  useEffect(()=>{
+  useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cart")));
-  },[])
-  useEffect(()=>{
-    
-    localStorage.setItem("cart",JSON.stringify(cart));
-  },[cart])
-  
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const notify2 = () => {
     toast.error("Item Deleted", {
@@ -72,7 +69,7 @@ export default function Cart() {
     let API_KEY = "AIzaSyAWJXYhKtvOKmrcHXSIyL3z33-5s4wTdKw";
     genAI = new GoogleGenerativeAI(API_KEY);
   }, []);
-  
+
   async function run(prompt) {
     prompt = prompt.map((ele) => {
       return ele.name;
@@ -80,14 +77,13 @@ export default function Cart() {
     const newW = prompt.toString();
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    try{
-    const result = await model.generateContent(
-      "Give nutrional value information for these Foods :" + newW
-    );
-    const response = await result.response;
-    setText(response.text());
-    }
-    catch(err){
+    try {
+      const result = await model.generateContent(
+        "Give nutrional value information for these Foods :" + newW
+      );
+      const response = await result.response;
+      setText(response.text());
+    } catch (err) {
       alert(err);
     }
     console.log(text);
@@ -109,11 +105,16 @@ export default function Cart() {
       >
         {/* Nutritional Value Display */}
 
-        <div className="h-[80%] w-[90%] mt-[10vh] bg-slate-950 mx-auto border-2 border-[#5F634F] p-9 relative overflow-y-scroll" style={{ display: flag1 ? "none" : "block" }}>
+        <div
+          className="h-[80%] w-[90%] mt-[10vh] bg-slate-950 mx-auto border-2 border-[#5F634F] p-9 relative overflow-y-scroll"
+          style={{ display: flag1 ? "none" : "block" }}
+        >
           <pre>{text}</pre>
           <p
             className="hover:text-red-500 text-red-700 hover:cursor-pointer absolute top-0 right-3 text-2xl"
-            onClick={() => {setflag(true),setflag1(true)}}
+            onClick={() => {
+              setflag(true), setflag1(true);
+            }}
           >
             x
           </p>
@@ -121,33 +122,71 @@ export default function Cart() {
 
         {/* Checkout Display */}
 
-        <div className=" w-[90%] mt-[10vh] bg-slate-950 mx-auto border-2 border-[#5F634F] p-2 min-[330px]:p-5 min-[780px]:p-9 relative " style={{ display: flag2 ? "none" : "block" }}>
+        <div
+          className=" w-[90%] mt-[10vh] bg-slate-950 mx-auto border-2 border-[#5F634F] p-2 min-[330px]:p-5 min-[780px]:p-9 relative "
+          style={{ display: flag2 ? "none" : "block" }}
+        >
           <div>
             <h2 className="text-center text-2xl">Checkout Page</h2>
             <main>
               <h3 className="text-xl">Enter Your Details</h3>
               <div className="min-[610px]:flex my-2 gap-2 max-[372px]:text-xs max-[419px]:text-sm">
-                <input type="text" className="p-1 max-[610px]:mb-2" placeholder="Name"/><input className="p-1" type="text" placeholder="Address"/>
+                <input
+                  type="text"
+                  className="p-1 max-[610px]:mb-2"
+                  placeholder="Name"
+                />
+                <input className="p-1" type="text" placeholder="Address" />
               </div>
-              <input type="text" className="p-1 max-[372px]:text-xs max-[419px]:text-sm" placeholder="Enter Building No. and Street Name (Optional)"/>
+              <input
+                type="text"
+                className="p-1 max-[372px]:text-xs max-[419px]:text-sm"
+                placeholder="Enter Building No. and Street Name (Optional)"
+              />
               <div className="min-[426px]:flex my-2 gap-2 max-[372px]:text-xs max-[419px]:text-sm">
-                <input type="number" className="p-1 max-[426px]:mb-2" placeholder="Enter Pincode"/><input className="p-1" type="number" placeholder="Enter Mobile Number"/>
+                <input
+                  type="number"
+                  className="p-1 max-[426px]:mb-2"
+                  placeholder="Enter Pincode"
+                />
+                <input
+                  className="p-1"
+                  type="number"
+                  placeholder="Enter Mobile Number"
+                />
               </div>
-              <input type="text" className="p-1 max-[372px]:text-xs max-[419px]:text-sm" placeholder="Enter Landmark (Optional)"/>
+              <input
+                type="text"
+                className="p-1 max-[372px]:text-xs max-[419px]:text-sm"
+                placeholder="Enter Landmark (Optional)"
+              />
               <div className="flex mt-[6vh] justify-between px-9">
-                <p>Net Amount: ${cart.reduce((acc,ele)=>{return acc+(ele.price*ele.quantity) },0)}</p>
-                <button className="bg-[#04aa6d] hover:bg-[#25795a] max-[300px]:text-xs max-[320px]:text-sm max-[490px]:p-1 p-2 rounded-lg" onClick={()=>{Instamojo.open("https://test.instamojo.com/@satan999/");}}>Pay Now</button>
+                <p>
+                  Net Amount: $
+                  {cart.reduce((acc, ele) => {
+                    return acc + ele.price * ele.quantity;
+                  }, 0)}
+                </p>
+                <button
+                  className="bg-[#04aa6d] hover:bg-[#25795a] max-[300px]:text-xs max-[320px]:text-sm max-[490px]:p-1 p-2 rounded-lg"
+                  onClick={() => {
+                    Instamojo.open("https://test.instamojo.com/@satan999/");
+                  }}
+                >
+                  Pay Now
+                </button>
               </div>
             </main>
           </div>
           <p
             className="hover:text-red-500 text-red-700 hover:cursor-pointer absolute top-0 right-3 text-2xl"
-            onClick={() => {setflag(true),setflag2(true)}}
+            onClick={() => {
+              setflag(true), setflag2(true);
+            }}
           >
             x
           </p>
         </div>
-
       </div>
       <Navbar />
       <h2 className="text-center mt-[18vh] text-4xl z-10 text-white">
@@ -183,7 +222,12 @@ export default function Cart() {
         })}
       </div>
       <div className="bg-[#1e293b] max-[463px]:w-[98%] max-[541px]:w-[89%] max-[608px]:w-[80%] max-[665px]:w-[72%] w-[67%] p-1 mx-auto mt-2">
-        <p className="text-center text-2xl">Total ${cart.reduce((acc,ele)=>{return acc+(ele.price*ele.quantity) },0)}</p>
+        <p className="text-center text-2xl">
+          Total $
+          {cart.reduce((acc, ele) => {
+            return acc + ele.price * ele.quantity;
+          }, 0)}
+        </p>
       </div>
       <div className="max-[463px]:w-[98%] max-[541px]:w-[89%] max-[608px]:w-[80%] max-[665px]:w-[72%] w-[67%] mx-auto flex justify-between mt-4">
         <button
@@ -206,7 +250,6 @@ export default function Cart() {
           Proceed to Payment
         </button>
       </div>
-      
     </div>
   );
 }

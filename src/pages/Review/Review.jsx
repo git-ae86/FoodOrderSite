@@ -39,6 +39,8 @@ export default function Review() {
     <div>
       <Navbar />
 
+      {/* Submit Review */}
+
       <div className="mt-[11vh] max-[463px]:w-[80%] max-[541px]:w-[70%] max-[608px]:w-[60%] max-[810px]:w-[50%] w-[40%] mx-auto h-[22vh] rounded-md">
         <textarea
           className="bg-[#38444d] w-full h-full p-3 rounded-md"
@@ -63,6 +65,9 @@ export default function Review() {
           Submit
         </button>
       </div>
+
+      {/* Review Display */}
+
       <h2 className="mt-[3vh] text-center text-3xl">Reviews</h2>
       <div className="cartbox mt-2 max-[463px]:w-[98%] max-[541px]:w-[89%] max-[608px]:w-[80%] max-[665px]:w-[72%] w-[67%] mx-auto bg-slate-800 h-[50vh] mb-[5vh] rounded-lg overflow-y-scroll relative">
         {data.map((ele, idx) => {
@@ -73,7 +78,6 @@ export default function Review() {
                   <img className="h-full rounded-full" src={ele.image}></img>
                 </p>
                 <p className="w-[33.33%]"> {ele.name}</p>
-                {/* <p className="">Total: 3</p> */}
               </div>
               <p className="">{ele.des}</p>
             </div>
