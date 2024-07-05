@@ -1,4 +1,4 @@
-import { useState ,useContext, createContext} from 'react'
+import { useState ,useContext, createContext, useEffect} from 'react'
 import './App.css'
 import Home from './pages/Home/Home'
 import { ToastContainer, toast } from "react-toastify";
@@ -17,6 +17,7 @@ function App() {
     const [quantity,setQ]=useState({});
     const [cart,setCart]=useState([]);
 
+   
     function addQuantity(id){
       if(!quantity[id])
         setQ((prev)=>({...prev,[id]:1}))

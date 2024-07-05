@@ -1,13 +1,34 @@
-import { useContext, useState } from "react";
+import { useContext, useState , useEffect} from "react";
 import { menu_list, assets } from "../../assets/assets";
 import { food_list } from "../../assets/assets";
 import "./Filter.css";
 import { context } from "../../App";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Filter() {
   const [category, setCategory] = useState("All");
   const {cart,setCart, quantity, setQ, addQuantity, removeQuantity } = useContext(context);
-    console.log(cart)
+  
+  useEffect(()=>{
+    if(cart.length>0)
+    localStorage.setItem("cart",JSON.stringify(cart));
+  },[cart])
+
+    const notify1 = () => {
+      toast.success("Item Added", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    };
+    
   return (
     <div className="filter my-[6vh] w-[80%] mx-auto">
       <h2 className="text-4xl mb-[2vh]">Explore our menu</h2>
@@ -37,7 +58,7 @@ export default function Filter() {
         {food_list.map((ele, idx) => {
           if (category == "All" || category == ele.category) {
             return (
-              <div key={idx} className="mb-[2vh] w-[80%] min-[680px]:w-[40%] min-[816px]:max-[1368px]:w-[30%]">
+              <div key={idx} className="mb-[2vh] max-[679px]:w-[80%] min-[680px]:max-[815px]:w-[40%] min-[816px]:max-[1368px]:w-[30%] ">
                 <div className="relative">
                   <img
                     style={{ borderRadius: "15px 15px 0 0" }}
@@ -80,7 +101,7 @@ export default function Filter() {
 
                 <p>${ele.price}</p>
                 <div className="flex justify-between w-[100%]">
-                  <button onClick={()=>{setCart((prev)=>([...prev,{quantity:quantity[ele._id],name:ele.name,price:ele.price,image:ele.image}]));}} className="bg-[#ff7c18] hover:bg-[#fe5000] p-1 px-2 rounded-md">
+                  <button onClick={()=>{if(quantity[ele._id]>0){ setCart((prev)=>([...prev,{quantity:quantity[ele._id],name:ele.name,price:ele.price,image:ele.image,_id:ele._id}]));notify1()}}} className="bg-[#ff7c18] hover:bg-[#fe5000] p-1 px-2 rounded-md">
                     Add To Cart
                   </button>
                   <Link to="./Cart" className="bg-[#ff7c18] hover:bg-[#fe5000] p-[1] px-2 rounded-md">
