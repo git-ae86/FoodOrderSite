@@ -66,7 +66,7 @@ export default function Cart() {
   });
 
   useEffect(() => {
-    let API_KEY = "AIzaSyAWJXYhKtvOKmrcHXSIyL3z33-5s4wTdKw";
+    let API_KEY = "AIzaSyDO1vxwfZ0JZE3S_d0BYEm3mUT-fe_vJ40";
     genAI = new GoogleGenerativeAI(API_KEY);
   }, []);
 
