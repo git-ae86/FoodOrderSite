@@ -79,7 +79,7 @@ export default function Cart() {
 
     try {
       const result = await model.generateContent(
-        "Give nutrional value information for these Foods :" + newW
+        "Give nutrional value information for these Foods,it doesn't have to be accurate. I just want to know the rough estimatation :" + newW
       );
       const response = await result.response;
       setText(response.text());
