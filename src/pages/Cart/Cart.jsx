@@ -75,7 +75,7 @@ export default function Cart() {
       return ele.name;
     });
     const newW = prompt.toString();
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     try {
       const result = await model.generateContent(
